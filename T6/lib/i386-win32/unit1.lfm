@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 82
+  Left = 458
   Height = 458
-  Top = 178
+  Top = 222
   Width = 690
-  Caption = 'Form1'
-  ClientHeight = 458
-  ClientWidth = 690
+  Caption = 'Integrais'
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   LCLVersion = '1.6.4.0'
   object GroupBox1: TGroupBox
@@ -79,7 +79,7 @@ object Form1: TForm1
       Height = 25
       Top = 140
       Width = 109
-      Caption = 'Gerar automatico'
+      Caption = 'Gerar automático'
       OnClick = Button2Click
       TabOrder = 5
     end
@@ -195,7 +195,7 @@ object Form1: TForm1
     Height = 168
     Top = 264
     Width = 336
-    Caption = 'Representação Gráfica (Beta)'
+    Caption = 'Representação Gráfica '
     ClientHeight = 148
     ClientWidth = 332
     Color = clSilver
