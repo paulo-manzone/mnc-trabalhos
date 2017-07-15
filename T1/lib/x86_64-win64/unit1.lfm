@@ -1,0 +1,372 @@
+object Form1: TForm1
+  Left = 79
+  Height = 534
+  Top = 140
+  Width = 521
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Brincando com Derivadas'
+  ClientHeight = 534
+  ClientWidth = 521
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  ShowHint = True
+  LCLVersion = '1.6.4.0'
+  Visible = True
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 534
+    Top = 0
+    Width = 521
+    ActivePage = TabSheet1
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Derivadas, Gradiente, Hessiana'
+      ClientHeight = 508
+      ClientWidth = 513
+      object GroupBox1: TGroupBox
+        Left = 8
+        Height = 80
+        Top = 0
+        Width = 488
+        Caption = 'Função Real com variável Real -  f: R ---> R'
+        ClientHeight = 62
+        ClientWidth = 484
+        TabOrder = 0
+        object Label1: TLabel
+          Left = 8
+          Height = 13
+          Top = 17
+          Width = 29
+          Caption = 'f(x) ='
+          ParentColor = False
+        end
+        object Label2: TLabel
+          Left = 208
+          Height = 13
+          Top = 16
+          Width = 17
+          Caption = 'x ='
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 288
+          Height = 13
+          Top = 16
+          Width = 16
+          Caption = 'ε ='
+          ParentColor = False
+        end
+        object Label4: TLabel
+          Left = 1
+          Height = 13
+          Top = 37
+          Width = 35
+          Caption = 'f´(x) ='
+          ParentColor = False
+        end
+        object Label5: TLabel
+          Left = 192
+          Height = 13
+          Top = 37
+          Width = 33
+          Caption = 'f''''(x) ='
+          ParentColor = False
+        end
+        object Edit1: TEdit
+          Left = 40
+          Height = 21
+          Top = 10
+          Width = 144
+          TabOrder = 0
+        end
+        object Edit2: TEdit
+          Left = 232
+          Height = 21
+          Top = 9
+          Width = 40
+          TabOrder = 1
+        end
+        object Edit3: TEdit
+          Left = 312
+          Height = 21
+          Top = 9
+          Width = 48
+          TabOrder = 2
+        end
+        object Edit4: TEdit
+          Left = 40
+          Height = 21
+          Top = 34
+          Width = 144
+          Color = clAqua
+          ReadOnly = True
+          TabOrder = 3
+        end
+        object Edit5: TEdit
+          Left = 232
+          Height = 21
+          Top = 32
+          Width = 184
+          Color = 16575250
+          ReadOnly = True
+          TabOrder = 4
+        end
+        object SpeedButton1: TSpeedButton
+          Left = 368
+          Height = 22
+          Hint = 'Calcula'
+          Top = 8
+          Width = 23
+          Caption = '-->'
+          OnClick = SpeedButton1Click
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 393
+          Height = 22
+          Hint = 'Limpa campos de texto'
+          Top = 9
+          Width = 23
+          Caption = 'X'
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 8
+        Height = 408
+        Top = 88
+        Width = 488
+        Caption = 'Função Real com n variáveis Reais - f: Rn ---> R'
+        ClientHeight = 390
+        ClientWidth = 484
+        TabOrder = 1
+        object Label6: TLabel
+          Left = 16
+          Height = 13
+          Top = 15
+          Width = 20
+          Caption = 'n = '
+          ParentColor = False
+        end
+        object Label7: TLabel
+          Left = 112
+          Height = 13
+          Top = 15
+          Width = 29
+          Caption = 'f(x) ='
+          ParentColor = False
+        end
+        object Label8: TLabel
+          Left = 328
+          Height = 13
+          Top = 17
+          Width = 16
+          Caption = 'ε ='
+          ParentColor = False
+        end
+        object StringGrid1: TStringGrid
+          Left = 15
+          Height = 48
+          Top = 48
+          Width = 455
+          ColCount = 7
+          DefaultRowHeight = 21
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 2
+          TabOrder = 0
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+        object StringGrid2: TStringGrid
+          Left = 15
+          Height = 72
+          Top = 112
+          Width = 455
+          ColCount = 8
+          DefaultRowHeight = 21
+          RowCount = 2
+          TabOrder = 1
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+        object StringGrid3: TStringGrid
+          Left = 16
+          Height = 160
+          Top = 216
+          Width = 456
+          ColCount = 8
+          DefaultRowHeight = 21
+          RowCount = 8
+          TabOrder = 2
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+        object SpeedButton3: TSpeedButton
+          Left = 80
+          Height = 22
+          Hint = 'Atualizar grade'
+          Top = 9
+          Width = 23
+          Caption = '#'
+        end
+        object SpeedButton4: TSpeedButton
+          Left = 400
+          Height = 22
+          Hint = 'Calcula'
+          Top = 9
+          Width = 23
+          Caption = '-->'
+        end
+        object SpeedButton5: TSpeedButton
+          Left = 425
+          Height = 22
+          Hint = 'Limpa campos de texto'
+          Top = 9
+          Width = 23
+          Caption = 'X'
+        end
+        object Edit6: TEdit
+          Left = 40
+          Height = 21
+          Top = 9
+          Width = 39
+          TabOrder = 3
+        end
+        object Edit7: TEdit
+          Left = 148
+          Height = 21
+          Top = 8
+          Width = 172
+          TabOrder = 4
+        end
+        object Edit8: TEdit
+          Left = 351
+          Height = 21
+          Top = 8
+          Width = 40
+          TabOrder = 5
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Jacobiano'
+      ClientHeight = 508
+      ClientWidth = 513
+      object GroupBox3: TGroupBox
+        Left = 8
+        Height = 488
+        Top = 8
+        Width = 488
+        Caption = 'Funções Reais com n variáveis Reais - f: Rn --> Rm'
+        ClientHeight = 470
+        ClientWidth = 484
+        TabOrder = 0
+        object Label9: TLabel
+          Left = 16
+          Height = 13
+          Top = 15
+          Width = 19
+          Caption = 'm ='
+          ParentColor = False
+        end
+        object Label10: TLabel
+          Left = 80
+          Height = 13
+          Top = 15
+          Width = 17
+          Caption = 'n ='
+          ParentColor = False
+        end
+        object Label11: TLabel
+          Left = 192
+          Height = 13
+          Top = 8
+          Width = 16
+          Caption = 'ε ='
+          ParentColor = False
+        end
+        object SpeedButton6: TSpeedButton
+          Left = 368
+          Height = 22
+          Hint = 'Calcular'
+          Top = 8
+          Width = 23
+          Caption = '-->'
+        end
+        object SpeedButton7: TSpeedButton
+          Left = 400
+          Height = 22
+          Hint = 'Limpar campos de texto'
+          Top = 8
+          Width = 23
+          Caption = 'X'
+        end
+        object Edit9: TEdit
+          Left = 48
+          Height = 21
+          Top = 7
+          Width = 24
+          TabOrder = 0
+        end
+        object Edit10: TEdit
+          Left = 104
+          Height = 21
+          Top = 7
+          Width = 24
+          TabOrder = 1
+        end
+        object Edit11: TEdit
+          Left = 216
+          Height = 21
+          Top = 7
+          Width = 80
+          TabOrder = 2
+        end
+        object SpeedButton8: TSpeedButton
+          Left = 144
+          Height = 22
+          Hint = 'Atualizar grade'
+          Top = 6
+          Width = 23
+          Caption = '#'
+        end
+        object StringGrid4: TStringGrid
+          Left = 16
+          Height = 68
+          Top = 64
+          Width = 407
+          ColCount = 4
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 2
+          TabOrder = 3
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+        object StringGrid5: TStringGrid
+          Left = 16
+          Height = 100
+          Top = 176
+          Width = 408
+          ColCount = 2
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+          RowCount = 4
+          TabOrder = 4
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+        object StringGrid6: TStringGrid
+          Left = 16
+          Height = 100
+          Top = 296
+          Width = 407
+          ColCount = 4
+          RowCount = 4
+          TabOrder = 5
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+        end
+      end
+    end
+  end
+end
