@@ -49,6 +49,7 @@ type
     procedure Trapezio;
     procedure UmTercoSimpson;
     procedure TresOitavosSimpson;
+    procedure QuadraturaGauss;
   private
     { private declarations }
   public
@@ -246,6 +247,106 @@ begin
 end;
 
 //Gauss
+procedure TForm1.QuadraturaGauss;
+var
+   fx: string;
+   x,y, integral, a, b: Extended;
+   w2ptos, w4ptos, w8ptos: array of Extended;
+   t2ptos, t4ptos, t8ptos: array of Extended;
+   i,n: Integer;
+begin
+   //Setando tamanho dos vetores
+   SetLength(w2ptos,2);
+   SetLength(t2ptos,2);
+   SetLength(w4ptos,4);
+   SetLength(t4ptos,4);
+   SetLength(w8ptos,8);
+   SetLength(t8ptos,8);
+   //====Preenchendo tabelas====
+   // - 2 pontos
+   w2ptos[0]:= 1;
+   w2ptos[1]:= 1;
+   t2ptos[0]:= -0.5773502691;
+   t2ptos[1]:= 0.5773502691;
+
+
+   // - 4 pontos
+   w4ptos[0]:= 0.3478548451;
+   w4ptos[1]:= 0.6521451548;
+   w4ptos[2]:= 0.6521451548;
+   w4ptos[3]:= 0.3478548451;
+   t4ptos[0]:= -0.8611363115;
+   t4ptos[1]:= -0.3399810435;
+   t4ptos[2]:= 0.3399810435;
+   t4ptos[3]:= 0.8611363115;
+
+   // - 8 pontos
+
+   w8ptos[0]:= 0.1012285362;
+   w8ptos[1]:= 0.2223810344;
+   w8ptos[2]:= 0.3137066458;
+   w8ptos[3]:= 0.3626837833;
+   w8ptos[4]:= 0.3626837833;
+   w8ptos[5]:= 0.3137066458;
+   w8ptos[6]:= 0.2223810344;
+   w8ptos[7]:= 0.1012285362;
+   t8ptos[0]:= -0.9602898564;
+   t8ptos[1]:= -0.7966664774;
+   t8ptos[2]:= -0.5255324099;
+   t8ptos[3]:= -0.1834346424;
+   t8ptos[4]:= 0.1834346424;
+   t8ptos[5]:= 0.5255324099;
+   t8ptos[6]:= 0.7966664774;
+   t8ptos[7]:= 0.9602898564;
+
+   //===Metodo em si =====
+
+   fx:= Edit1.Text;
+   a:=StrToFloat(Edit2.Text);
+   b:=StrToFloat(Edit3.Text);
+   integral:=0;
+
+   //Para dois pontos
+   if(RadioButton1.Checked) then
+   begin
+         n:= 2;
+         for i:=0 to n-1 do
+         begin
+             x:=(a*(1-t2ptos[i]) + b*(1+t2ptos[1]))/2;
+             FxR1(fx,x,y);
+             integral:= integral + w2ptos[i]*y;
+         end;
+         integral:= (b-a)*integral/2;
+   end;
+
+    //Para quatro pontos
+   if(RadioButton2.Checked) then
+   begin
+         n:= 4;
+         for i:=0 to n-1 do
+         begin
+             x:=(a*(1-t4ptos[i]) + b*(1+t4ptos[1]))/2;
+             FxR1(fx,x,y);
+             integral:= integral + w4ptos[i]*y;
+         end;
+         integral:= (b-a)*integral/2;
+   end;
+
+   //Para oito pontos
+   if(RadioButton3.Checked) then
+   begin
+         n:= 8;
+         for i:=0 to n-1 do
+         begin
+             x:=(a*(1-t8ptos[i]) + b*(1+t8ptos[1]))/2;
+             FxR1(fx,x,y);
+             integral:= integral + w8ptos[i]*y;
+         end;
+         integral:= (b-a)*integral/2;
+   end;
+   StringGrid1.Cells[1,6]:= FloatToStr(integral);
+
+end;
 
 //============================================================================
 //                            Controles de Forma
@@ -276,7 +377,7 @@ begin
   Trapezio;
   UmTercoSimpson;
   TresOitavosSimpson;
-
+  QuadraturaGauss;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
