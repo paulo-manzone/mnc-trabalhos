@@ -336,7 +336,7 @@ begin
    if(RadioButton3.Checked) then
    begin
          n:= 8;
-         for (i:=0) to n-1 do
+         for i:=0 to n-1 do
          begin
              x:=(a*(1-t8ptos[i]) + b*(1+t8ptos[1]))/2;
              FxR1(fx,x,y);
@@ -375,8 +375,24 @@ begin
   RetanguloEsquerda;
   RetanguloDireita;
   Trapezio;
-  UmTercoSimpson;
-  TresOitavosSimpson;
+  if StrToInt(Edit4.Text) mod 2 = 0 then
+  begin
+     UmTercoSimpson;
+  end
+  else
+  begin
+     StringGrid1.Cells[1,4]:= 'Intervalo não é par'
+  end;
+  if StrToInt(Edit4.Text) mod 3 = 0 then
+  begin
+     TresOitavosSimpson;
+  end
+  else
+  begin
+     StringGrid1.Cells[1,5]:= 'Intervalo não é multiplo de 3'
+  end;
+
+
   QuadraturaGauss;
 end;
 

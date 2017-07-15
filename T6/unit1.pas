@@ -24,6 +24,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -31,6 +32,7 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
@@ -375,8 +377,24 @@ begin
   RetanguloEsquerda;
   RetanguloDireita;
   Trapezio;
-  UmTercoSimpson;
-  TresOitavosSimpson;
+  if StrToInt(Edit4.Text) mod 2 = 0 then
+  begin
+     UmTercoSimpson;
+  end
+  else
+  begin
+     StringGrid1.Cells[1,4]:= 'Intervalo não é par'
+  end;
+  if StrToInt(Edit4.Text) mod 3 = 0 then
+  begin
+     TresOitavosSimpson;
+  end
+  else
+  begin
+     StringGrid1.Cells[1,5]:= 'Intervalo não é multiplo de 3'
+  end;
+
+
   QuadraturaGauss;
 end;
 
