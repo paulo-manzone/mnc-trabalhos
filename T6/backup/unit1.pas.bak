@@ -372,35 +372,38 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or (Edit4.Text = '') then
   begin
-        ShowMessage("Preencha os campos!");
+        ShowMessage('Preencha os campos!');
         exit();
   end;
   Label5.Caption:= Edit2.Text;
   Label6.Caption:= Edit3.Text;
   Label7.Caption:= '(' + Edit1.Text + ') . dx ';
   //Chamando métodos
-  RetanguloEsquerda;
-  RetanguloDireita;
-  Trapezio;
-  if StrToInt(Edit4.Text) mod 2 = 0 then
-  begin
-     UmTercoSimpson;
-  end
-  else
-  begin
-     StringGrid1.Cells[1,4]:= 'Intervalo não é par'
-  end;
-  if StrToInt(Edit4.Text) mod 3 = 0 then
-  begin
-     TresOitavosSimpson;
-  end
-  else
-  begin
-     StringGrid1.Cells[1,5]:= 'Intervalo não é multiplo de 3'
+  try
+        RetanguloEsquerda;
+        RetanguloDireita;
+        Trapezio;
+        if StrToInt(Edit4.Text) mod 2 = 0 then
+        begin
+           UmTercoSimpson;
+        end
+        else
+        begin
+           StringGrid1.Cells[1,4]:= 'Intervalo não é par'
+        end;
+        if StrToInt(Edit4.Text) mod 3 = 0 then
+        begin
+           TresOitavosSimpson;
+        end
+        else
+        begin
+           StringGrid1.Cells[1,5]:= 'Intervalo não é multiplo de 3'
+        end;
+        QuadraturaGauss;
+  except
+    showmessage('Ocorreu algum erro!');
   end;
 
-
-  QuadraturaGauss;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
