@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = -8
-  Height = 715
-  Top = -8
-  Width = 1354
+  Left = 118
+  Height = 451
+  Top = 91
+  Width = 709
   Caption = 'Integrais'
-  ClientHeight = 0
-  ClientWidth = 0
+  ClientHeight = 451
+  ClientWidth = 709
   OnCreate = FormCreate
   LCLVersion = '1.6.4.0'
   object GroupBox1: TGroupBox
@@ -24,8 +24,8 @@ object Form1: TForm1
       Left = 16
       Height = 15
       Top = 8
-      Width = 30
-      Caption = 'F(x) ='
+      Width = 28
+      Caption = 'f(x) ='
       ParentColor = False
     end
     object Label2: TLabel
@@ -47,7 +47,7 @@ object Form1: TForm1
       Left = 56
       Height = 23
       Top = 40
-      Width = 48
+      Width = 40
       TabOrder = 1
     end
     object Edit3: TEdit
@@ -190,7 +190,7 @@ object Form1: TForm1
       Height = 20
       Top = 21
       Width = 7
-      Caption = 'a'
+      Caption = 'b'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
       Font.Name = 'Arial Narrow'
@@ -205,7 +205,7 @@ object Form1: TForm1
       Height = 17
       Top = 112
       Width = 8
-      Caption = 'b'
+      Caption = 'a'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
       Font.Name = 'Arial'
@@ -244,5 +244,21 @@ object Form1: TForm1
       ParentColor = False
       ParentFont = False
     end
+  end
+  object Label9: TLabel
+    Left = 392
+    Height = 15
+    Top = 280
+    Width = 158
+    Caption = 'Paulo Eduardo Manzone Maia'
+    ParentColor = False
+  end
+  object Label10: TLabel
+    Left = 392
+    Height = 15
+    Top = 304
+    Width = 75
+    Caption = 'RA: 161022261'
+    ParentColor = False
   end
 end

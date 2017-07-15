@@ -190,7 +190,7 @@ object Form1: TForm1
       Height = 20
       Top = 21
       Width = 7
-      Caption = 'a'
+      Caption = 'b'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
       Font.Name = 'Arial Narrow'
@@ -205,7 +205,7 @@ object Form1: TForm1
       Height = 17
       Top = 112
       Width = 8
-      Caption = 'b'
+      Caption = 'a'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
       Font.Name = 'Arial'

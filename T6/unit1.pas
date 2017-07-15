@@ -361,7 +361,7 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-  Edit1.Text:= '4x^2+3';
+  Edit1.Text:= '4*x*x+3';
   Edit2.Text:= '-1';
   Edit3.Text:= '1';
   Edit4.Text:= '24';
@@ -370,6 +370,11 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
+  if (Edit1.Text = '') or (Edit2.Text = '') or (Edit3.Text = '') or (Edit4.Text = '') then
+  begin
+        ShowMessage('Preencha os campos!');
+        exit();
+  end;
   Label5.Caption:= Edit2.Text;
   Label6.Caption:= Edit3.Text;
   Label7.Caption:= '(' + Edit1.Text + ') . dx ';
@@ -404,7 +409,11 @@ begin
   Edit2.Text:= '';
   Edit3.Text:= '';
   Edit4.Text:= '';
+  Label5.Caption:='b';
+  Label6.Caption:='a';
+  Label7.Caption:='f(x) . dx';
   RadioButton1.Checked:=True;
+
 end;
 
 procedure TForm1.Edit3Change(Sender: TObject);
