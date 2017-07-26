@@ -1,0 +1,231 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Grids;
+
+type
+
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    StringGrid1: TStringGrid;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure TForm1.Jacobiano;
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+var
+  Matriz J;
+  Vetor Xk, Fk;
+  Integer m;
+
+type
+  Vetor = array of Extended;
+  Matriz = array of array of Extended;
+
+  function FxR1(f: string; x: Extended; var y: Extended): Word; stdcall; external 'Interpretador.dll';
+  function FxRn(f: String; x: Vetor; colchetes: Boolean; var y: Extended): Word; stdcall; external 'Interpretador.dll';
+  function ErrorToStr(Error: Word; Lang: string): string; stdcall; external 'Interpretador.dll';
+{$R *.lfm}
+
+{ TForm1 }
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  i: Integer;
+begin
+     StringGrid1.RowCount:=11;
+     StringGrid1.ColCount:=5;
+     for i:=1 to 10 do
+     begin
+       StringGrid1.Cells[0,i]:=IntToStr(i);
+     end;
+     StringGrid1.Cells[0,0]:='i';
+     StringGrid1.Cells[1,0]:='x[i] Inicial';
+     StringGrid1.Cells[2,0]:='x[i] Final';
+     StringGrid1.Cells[3,0]:='f[i] Final';
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  Edit1.Text:=('3');
+  Edit2.Text:=('10');
+  Edit3.Text:=('0,01');
+  RadioButton1.Checked:=true;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  //========================Botão Calcular===============
+  if (RadioButton1.Checked = true) then
+  begin
+    //Chama Newton
+
+  end;
+  if (RadioButton2.Checked = true) then
+  begin
+    //Chama Newton Modificado
+
+  end;
+end;
+
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+   StringGrid1.RowCount:= StrToInt(Edit1.Text)+1;
+   StringGrid1.Cells[0,StringGrid1.RowCount-1]:=IntToStr(StringGrid1.RowCount);
+end;
+
+//===========================================================
+//                       MÉTODOS
+//===========================================================
+//===============================================================
+// Derivada Parcial de Primeira Ordem
+function DerivadaParcialPrimeira(f: string; var x: Vetor; i: Byte; Epsilon: Extended; var d: Extended): Word;
+var
+   h, xi, f2, f1, p, q : Extended;
+   j: Integer;
+begin
+ SetLength(x, 100);
+ h:= 1000*Epsilon;
+ xi:=x[i];
+ x[i]:= xi+h;
+ FxRn(f,x,true,f1);
+ x[i]:= xi-h;
+ FxRn(f,x,true,f2);
+ x[i]:=xi; // Restaura
+ p:= (f1-f2) / (2*h);
+ for j:= 1 to 10 do
+ begin
+   q:= p;
+   h:= h/2;
+   x[i]:= xi+h;
+   FxRn(f,x,true,f1);
+   x[i]:= xi-h;
+   FxRn(f,x,true,f2);
+   x[i]:= xi; // Restaura
+   p:= (f1-f2) / (2*h);
+   if abs(p-q) < Epsilon then
+      break;
+ end;
+ d:= p;
+end;
+//===============================================================
+//===============================================================
+// Calculo do Gradiente
+function Gradiente(f: string; var x: Vetor; Epsilon: Extended; var g: Vetor; n: Integer): Word;
+var
+   i: Integer;
+   dx: Extended;
+begin
+ SetLength(x, n+1);
+ for i:=1 to n do
+ begin
+      try
+        DerivadaParcialPrimeira(f,x,i,Epsilon,dx);
+        g[i]:= dx;
+      except
+        showMessage('Erro ao calcular vetor gradiente');
+      end;
+ end;
+end;
+//===============================================================
+
+procedure TForm1.Jacobiano;
+var
+   i,j: Integer;
+   fx: string;
+   Xinicio: Vetor;
+   Grad: Vetor;
+begin
+     m:= StrToInt(Edit1.Text);
+     SetLength(Grad, m+1);
+     SetLength(Xinicio, m+1);
+     for i:=0 to m do
+     begin
+       fx:= StringGrid1.Cells[1,i+1];
+       Gradiente(fx, Xinicio, 0,00001, Grad);
+       for j:=0 to m do
+       begin
+           J[i][j]:= Grad[j+1];
+       end
+     end
+end;
+
+//===============================================================
+function gaussSimples(a, b: Vetor; var x: Vetor; n: Integer):Word;
+var
+   i, j: Integer;
+
+begin
+
+  //Tringularizar
+  for(j=1; i<=n-1; i++){
+    for(i=j+1; i<=n; i++){
+      m=a[i][j]/a[j][j];
+    }
+    b[i] = b[i]-m*b[j];
+  }
+  //Resolvendo
+  x[n] = b[n]/a[n][n];
+  for(i=n-1; i>=i; i--){
+    soma = 0;
+    for(j=i+1; j>=1; j--){
+      soma+= a[i][j]*x[j];
+    }
+    x[i] = (b[i]-soma)/a[i][i];
+  }
+}
+end;
+
+
+
+
+procedure TForm1.Newton;
+var
+  i, ordem: Integer;
+begin
+    ordem:= StrToInt(Edit1.Text);
+
+
+end;
+
+procedure TForm1.NewtonModificado;
+var
+  i, ordem: Integer;
+begin
+
+end;
+
+end.
+

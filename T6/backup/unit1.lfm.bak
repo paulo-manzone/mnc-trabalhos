@@ -260,5 +260,6 @@ object Form1: TForm1
     Width = 75
     Caption = 'RA: 161022261'
     ParentColor = False
+    OnClick = Label10Click
   end
 end

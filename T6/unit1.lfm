@@ -186,24 +186,24 @@ object Form1: TForm1
     ParentColor = False
     TabOrder = 2
     object Label5: TLabel
-      Left = 81
-      Height = 20
-      Top = 21
-      Width = 7
+      Left = 90
+      Height = 22
+      Top = 32
+      Width = 10
       Caption = 'b'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -15
-      Font.Name = 'Arial Narrow'
+      Font.Name = 'Arial Black'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      Font.Style = [fsItalic]
+      Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 72
-      Height = 17
-      Top = 112
+      Left = 88
+      Height = 18
+      Top = 95
       Width = 8
       Caption = 'a'
       Font.CharSet = ANSI_CHARSET
@@ -211,14 +211,14 @@ object Form1: TForm1
       Font.Name = 'Arial'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
-      Font.Style = [fsItalic]
+      Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
     end
     object Label7: TLabel
       Left = 96
       Height = 25
-      Top = 64
+      Top = 59
       Width = 61
       Caption = 'f(x) . dx'
       Font.CharSet = ANSI_CHARSET
@@ -243,6 +243,7 @@ object Form1: TForm1
       Font.Quality = fqDraft
       ParentColor = False
       ParentFont = False
+      OnClick = Label8Click
     end
   end
   object Label9: TLabel
@@ -260,5 +261,6 @@ object Form1: TForm1
     Width = 75
     Caption = 'RA: 161022261'
     ParentColor = False
+    OnClick = Label10Click
   end
 end
